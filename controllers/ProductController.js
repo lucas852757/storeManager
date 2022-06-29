@@ -8,6 +8,12 @@ const getOneProduct = async (req, res, next) => {
   }
 };
 
+const getAllProducts = async (req, res) => {
+    const products = await productService.listAllProducts();
+    return res.status(200).json(products);
+};
+
 module.exports = {
   getOneProduct,
+  getAllProducts,
 };
