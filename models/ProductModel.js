@@ -6,7 +6,7 @@ const getAllProducts = async () => {
 };
 
 const getProductsById = async (id) => {
-  const [product] = await connection.query('select product from products where id=?', [id]);
+  const [product] = await connection.query('select * from products where id=?', [id]);
   return product;
 };
 
