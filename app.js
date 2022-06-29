@@ -1,4 +1,6 @@
 // LQL
+// Baseado no course bloco 23
+
 const express = require('express');
 const error = require('./middlewares/errorMiddleware');
 const productController = require('./controllers/ProductController');

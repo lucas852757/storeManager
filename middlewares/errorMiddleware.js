@@ -1,3 +1,4 @@
+// Baseado no course bloco 23
 const error = (err, req, res, _next) => {
   if (err.status) {
     return res.status(err.status).json({ message: err.message });
