@@ -19,5 +19,7 @@ app.get('/', (_request, response) => {
 
 app.get('/products/:id', productController.getOneProduct);
 app.get('/products', productController.getAllProducts);
+
+app.post('/products');
 app.use(error);
 module.exports = app;
