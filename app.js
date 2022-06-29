@@ -1,5 +1,6 @@
 // LQL
 const express = require('express');
+const productController = require('./controllers/ProductController');
 
 const app = express();
 
@@ -12,6 +13,6 @@ app.get('/', (_request, response) => {
 // você pode registrar suas rotas normalmente, como o exemplo acima
 // você deve usar o arquivo index.js para executar sua aplicação 
 
-app.get('/products/:id');
-app.get('/products');
+app.get('/products/:id', productController.getOneProduct);
+app.get('/products', productController.getAllProducts);
 module.exports = app;
