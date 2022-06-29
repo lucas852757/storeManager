@@ -13,5 +13,5 @@ app.get('/', (_request, response) => {
 // você deve usar o arquivo index.js para executar sua aplicação 
 
 app.get('/products/:id');
-
+app.get('/products');
 module.exports = app;
