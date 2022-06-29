@@ -1,5 +1,6 @@
 // LQL
 const express = require('express');
+const error = require('./middlewares/errorMiddleware');
 const productController = require('./controllers/ProductController');
 
 const app = express();
@@ -16,4 +17,5 @@ app.get('/', (_request, response) => {
 
 app.get('/products/:id', productController.getOneProduct);
 app.get('/products', productController.getAllProducts);
+app.use(error);
 module.exports = app;
