@@ -1,3 +1,5 @@
+const productService = require('../services/ProductService');
+
 const getOneProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
