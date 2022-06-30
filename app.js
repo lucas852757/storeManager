@@ -4,6 +4,7 @@
 const express = require('express');
 const error = require('./middlewares/errorMiddleware');
 const productController = require('./controllers/ProductController');
+const saleController = require('./controllers/SaleController');
 
 const app = express();
 

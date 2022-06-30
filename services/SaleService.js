@@ -10,6 +10,12 @@ const createSales = async (body) => {
   // Cria a venda
   saleModel.tableSales(listAllSales);
   await Promise.all(body.map((sale) => saleModel.addSales(listAllSales, sale)));
+
+  // Retorna a venda
+  return {
+    id: listAllSales,
+    itemsSold: body,
+  };
 };
 
 module.exports = {
