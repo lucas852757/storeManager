@@ -18,4 +18,5 @@ const tableSales = async (id) => {
 module.exports = {
   findAllSales,
   addSales,
+  tableSales,
 };
