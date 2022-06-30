@@ -6,7 +6,7 @@ const createSales = async (body) => {
 
   // Soma mais 1
   listAllSales += 1;
-  await Promise.all(body.map((sale) => saleModel.addSales(sale)));
+  await Promise.all(body.map((sale) => saleModel.addSales(listAllSales, sale)));
 };
 
 module.exports = {
