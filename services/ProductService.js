@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const productModel = require('../models/ProductModel');
 
 const listAllProducts = async () => {
@@ -15,6 +16,14 @@ const listProductById = async (id) => {
 };
 
 const createProduct = async (name) => {
+  const schema = Joi.object({
+    name: Joi.string().not().empty().min(5)
+      .required(),
+  });
+  const { error } = schema.validate({ name });
+  if (error) {
+    throw error;
+  }
   /* const foundProduct = await productModel.findProduct(name);
 
   if (!foundProduct.length) {
