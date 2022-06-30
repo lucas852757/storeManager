@@ -2,7 +2,7 @@ const saleModel = require('../models/SaleModel');
 
 const createSales = async (body) => {
   // Conta todos os id's das vendas
-  let listAllSales = saleModel.findAllSales();
+  let listAllSales = await saleModel.findAllSales();
 
   // Soma mais 1
   listAllSales += 1;
