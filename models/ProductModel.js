@@ -10,7 +10,13 @@ const getProductsById = async (id) => {
   return product;
 };
 
+const findProduct = async (name) => {
+const query = 'select name from products where name=?';
+const [foundProduct] = await connection.query(query, [name]);
+return foundProduct;
+};
 module.exports = {
   getAllProducts,
   getProductsById,
+  findProduct,
 };
