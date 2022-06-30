@@ -15,11 +15,13 @@ const listProductById = async (id) => {
 };
 
 const createProduct = async (name) => {
-  const foundProduct = await productModel.findProduct(name);
+  /* const foundProduct = await productModel.findProduct(name);
 
   if (!foundProduct.length) {
     await productModel.addProduct(name);
-  }
+  } */
+  const product = await productModel.addProduct(name);
+  return product;
 };
 
 module.exports = {
