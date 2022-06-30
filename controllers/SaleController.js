@@ -1,3 +1,5 @@
+const saleService = require('../services/SaleService');
+
 const postSales = async (req, res, next) => {
   try {
     const { body } = req;
