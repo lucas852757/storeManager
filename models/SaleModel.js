@@ -10,6 +10,11 @@ const addSales = async (id, { productId, quantity }) => {
   await connection.execute(query, [id, productId, quantity]);
 };
 
+const tableSales = async (id) => {
+  const query = 'insert into sales (id) values (?)';
+  await connection.query(query, [id]);
+};
+
 module.exports = {
   findAllSales,
   addSales,
