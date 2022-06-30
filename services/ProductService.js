@@ -14,7 +14,12 @@ const listProductById = async (id) => {
   return product[0];
 };
 
+const createProduct = async (name) => {
+  const foundProduct = productModel.findProduct(name);
+};
+
 module.exports = {
   listAllProducts,
   listProductById,
+  createProduct,
 };
