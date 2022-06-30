@@ -17,7 +17,8 @@ const getAllProducts = async (req, res) => {
 
 const postProducts = async (req, res, next) => {
   try {
-    const products = await productService.createProduct();
+    const { name } = req.body;
+    const products = await productService.createProduct(name);
   } catch (error) {
     next(error);
   }
