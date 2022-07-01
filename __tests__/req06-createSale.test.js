@@ -46,7 +46,7 @@ describe("06 - Crie endpoint para validar e cadastrar vendas", () => {
     expect(json.message).toEqual("\"quantity\" must be greater than or equal to 1");
   });
 
-  it("Será validado que não é possível realizar operações em uma venda com o campo `productId` inexistente, em uma requisição com um único item", async () => {
+  it.only("Será validado que não é possível realizar operações em uma venda com o campo `productId` inexistente, em uma requisição com um único item", async () => {
     const { status, json } = await frisby.post(`${url}/sales`, nonexistentProductIdBody);
 
     expect(status).toBe(404);
