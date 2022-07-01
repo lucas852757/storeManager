@@ -1,8 +1,9 @@
 
+const { errorsOfJoi } = require('../helpers/helpersJoi');
 const saleModel = require('../models/SaleModel');
 
 const createSales = async (body) => {
-  
+  errorsOfJoi(body);
 
   body.forEach(({ productId }) => { const fundProduct = saleModel.findProduct(
     
