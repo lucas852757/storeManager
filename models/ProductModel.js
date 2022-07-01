@@ -10,9 +10,9 @@ const getProductsById = async (id) => {
   return product;
 };
 
-const findProduct = async (name) => {
-const query = 'select name from products where name=?';
-const [foundProduct] = await connection.query(query, [name]);
+const findProduct = async (id) => {
+const query = 'select id from products where id=?';
+const [foundProduct] = await connection.query(query, [id]);
 return foundProduct;
 };
 
