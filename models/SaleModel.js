@@ -17,8 +17,14 @@ const tableSales = async (id) => {
   await connection.query(query, [id]);
 };
 
+const productsSold = async (id) => {
+  const query = 'select product_id, quantity from sales_products where sale_id=?';
+  const [result] = await connection.query(query, [id]);
+};
+
 module.exports = {
   findAllSales,
   addSales,
   tableSales,
+  productsSold,
 };
