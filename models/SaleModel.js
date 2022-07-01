@@ -1,5 +1,5 @@
 const connection = require('./connection');
-
+const serialize = require('../helpers/serialize');
 const findAllSales = async () => {
   const [sales] = await connection.query('select count(id) from sales');
 
@@ -20,6 +20,7 @@ const tableSales = async (id) => {
 const productsSold = async (id) => {
   const query = 'select product_id, quantity from sales_products where sale_id=?';
   const [result] = await connection.query(query, [id]);
+  return serialize(result);
 };
 
 module.exports = {
