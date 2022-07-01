@@ -1,13 +1,17 @@
-
 const { errorsOfJoi } = require('../helpers/helpersJoi');
 const saleModel = require('../models/SaleModel');
 
 const createSales = async (body) => {
+  // Captura e lanaça erros
   errorsOfJoi(body);
-
-  body.forEach(({ productId }) => { const fundProduct = saleModel.findProduct(
-    
-  ); });
+  // Verifica se o campo product_id existe na tabela products
+  body.forEach(({ productId }) => {
+    const foundProduct = saleModel.findProduct(productId); 
+    if (!foundProduct.length) {
+      const error = { status: 404, message: 'Product not found' };
+      throw error;
+    }
+});
   // Conta todos os id's das vendas
   let listAllSales = await saleModel.findAllSales();
   
