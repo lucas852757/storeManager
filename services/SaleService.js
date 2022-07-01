@@ -1,15 +1,12 @@
-const Joi = require('joi');
+
 const saleModel = require('../models/SaleModel');
 
 const createSales = async (body) => {
-  body.forEach(({ productId, quantity }) => {
-   const schema = Joi.object({
-     productId: Joi.number().not().empty().required(),
-     quantity: Joi.number().min(1).greater(1).not().empty().required(),
-   });
-    const { error } = schema.validate({ productId, quantity });
-   if (error) { throw error; }
-  });
+  
+
+  body.forEach(({ productId }) => { const fundProduct = saleModel.findProduct(
+    
+  ); });
   // Conta todos os id's das vendas
   let listAllSales = await saleModel.findAllSales();
   
@@ -20,10 +17,7 @@ const createSales = async (body) => {
   saleModel.tableSales(listAllSales);
   await Promise.all(body.map((sale) => saleModel.addSales(listAllSales, sale)));
   // const productsSold = await saleModel.productsSold(listAllSales);
-  return ({
-    id: listAllSales,
-    itemsSold: body,
-  });
+  return ({ id: listAllSales, itemsSold: body });
 };
 
 module.exports = {
