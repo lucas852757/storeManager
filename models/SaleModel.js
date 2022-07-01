@@ -8,8 +8,7 @@ const findAllSales = async () => {
 
 const addSales = async (id, { productId, quantity }) => {
   const query = 'insert into sales_products (sale_id, product_Id, quantity) values (?,?,?)';
-  const [result] = await connection.execute(query, [id, productId, quantity]);
-  return result.insertId;
+  await connection.query(query, [id, productId, quantity]);
 };
 
 const tableSales = async (id) => {
