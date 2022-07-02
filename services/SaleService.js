@@ -25,8 +25,8 @@ const createSales = async (body) => {
   // Cria a venda
   saleModel.tableSales(listAllSales);
   await Promise.all(body.map((sale) => saleModel.addSales(listAllSales, sale)));
-  // const productsSold = await saleModel.productsSold(listAllSales);
-  return ({ id: listAllSales, itemsSold: body });
+  const productsSold = await saleModel.productsSold(listAllSales);
+  return ({ id: listAllSales, itemsSold: productsSold });
 };
 
 module.exports = {
