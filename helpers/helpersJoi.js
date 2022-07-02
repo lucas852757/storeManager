@@ -7,7 +7,7 @@ const errorsOfJoi = (body) => {
      productId: Joi.number().not().empty().required(),
      quantity: Joi.number().min(1).not().empty()
 .required(),
-   }); // https://github.com/sideway/joi/issues/2371
+   }); // source: https://github.com/sideway/joi/issues/2371 -> ensina a usar o .min como greater than
    const { error } = schema.validate({ productId, quantity });
    if (error) {
      throw error;
