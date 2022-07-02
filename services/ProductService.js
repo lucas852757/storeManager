@@ -33,8 +33,19 @@ const createProduct = async (name) => {
   return product;
 };
 
+const updateProduct = async (id, name) => {
+  Joi.object({
+    id: Joi.number().integer().positive().required(),
+    name: Joi.string().not().empty().min(5)
+      .required(),
+  });
+  const product = await productModel.updateProduct(id, name);
+  return product;
+};
+
 module.exports = {
   listAllProducts,
   listProductById,
   createProduct,
+  updateProduct,
 };
