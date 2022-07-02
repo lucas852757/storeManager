@@ -23,9 +23,17 @@ const productsSold = async (id) => {
   return serialize(result);
 };
 
+const getSales = async () => {
+  const query = 'select sp.sale_id, s.date, sp.product_id, sp.quantity from'
+    + ' sales_products as sp inner join sales as s on s.id=sp.sale_id';
+  const [result] = await connection.query(query); 
+  return serialize(result);
+};
+
 module.exports = {
   findAllSales,
   addSales,
   tableSales,
   productsSold,
+  getSales,
 };
