@@ -6,6 +6,7 @@ const getOneProduct = async (req, res, next) => {
     const product = await productService.listProductById(id);
     return res.status(200).json(product);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
@@ -21,6 +22,7 @@ const postProducts = async (req, res, next) => {
     const products = await productService.createProduct(name);
     return res.status(201).json(products);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
