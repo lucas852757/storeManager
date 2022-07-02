@@ -9,7 +9,7 @@ const createSales = async (body) => {
   
   const valuesPromises = body.map(async ({ productId }) => {
     const foundProduct = await productModel.findProduct(productId);
-    console.log(foundProduct);
+  // console.log(foundProduct);
     if (!foundProduct.length) {
       const error = { status: 404, message: 'Product not found' };
       throw error;

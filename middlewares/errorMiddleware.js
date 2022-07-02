@@ -1,6 +1,6 @@
 // Baseado no course bloco 23
 const error = (err, req, res, _next) => {
-  console.log(' -->', err);
+  // console.log(' -->', err);
   if (err.status) {
     return res.status(err.status).json({ message: err.message });
   }
