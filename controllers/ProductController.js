@@ -30,7 +30,8 @@ const postProducts = async (req, res, next) => {
 const updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const product = productService.updateProduct(id);
+    const { name } = req.body;
+    const product = productService.updateProduct(id, name);
     return res.status(201).json(product);
   } catch (error) {
     console.log(error);
