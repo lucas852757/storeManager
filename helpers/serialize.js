@@ -18,5 +18,4 @@ const serialize = (objects) =>
     return { productId: object.product_id, quantity: object.quantity };
   });
 
-
 module.exports = serialize;

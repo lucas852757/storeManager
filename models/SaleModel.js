@@ -1,5 +1,6 @@
 const connection = require('./connection');
 const serialize = require('../helpers/serialize');
+
 const findAllSales = async () => {
   const [sales] = await connection.query('select count(id) from sales');
 
