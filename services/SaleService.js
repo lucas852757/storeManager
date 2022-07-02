@@ -31,11 +31,22 @@ const createSales = async (body) => {
 
 const getSales = async () => {
   const allSales = await saleModel.getSales();
+
+  if (!allSales.length) {
+    const error = { status: 404, message: 'Sale not found' };
+    throw error;
+  }
+
   return allSales;
 };
 
 const getSale = async (id) => {
   const sale = await saleModel.getSale(id);
+
+  if (!sale.length) {
+    const error = { status: 404, message: 'Sale not found' };
+    throw error;
+  }
   return sale;
 };
 
