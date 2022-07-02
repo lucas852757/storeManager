@@ -27,8 +27,20 @@ const postProducts = async (req, res, next) => {
   }
 };
 
+const updateProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = productService.updateProduct(id);
+    return res.status(201).json(product);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 module.exports = {
   getOneProduct,
   getAllProducts,
   postProducts,
+  updateProduct,
 };
