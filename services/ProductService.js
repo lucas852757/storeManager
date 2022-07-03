@@ -46,7 +46,7 @@ const updateProduct = async (id, name) => {
     throw error;
   }
   const foundProduct = await productModel.findProduct(id);
-  console.log(foundProduct);
+
   if (!foundProduct.length) {
     const dbError = { status: 404, message: 'Product not found' };
     throw dbError;
