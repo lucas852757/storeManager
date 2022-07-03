@@ -7,7 +7,8 @@ const error = (err, req, res, _next) => {
 
   if (
     err.isJoi
-    && (err.details[0].type.includes('.min'))
+    && (err.details[0].type === 'string.min'
+      || err.details[0].type === 'number.min')
   ) {
     // console.log('-->',err.details[0]);
     res.status(422).json({ message: err.message });
