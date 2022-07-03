@@ -55,9 +55,14 @@ const updateProduct = async (id, name) => {
   return product;
 };
 
+const deleteProduct = async (id) => {
+
+};
+
 module.exports = {
   listAllProducts,
   listProductById,
   createProduct,
   updateProduct,
+  deleteProduct,
 };
