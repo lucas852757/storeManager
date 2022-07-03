@@ -57,6 +57,11 @@ const updateProduct = async (id, name) => {
 
 const deleteProduct = async (id) => {
   const foundProduct = await productModel.findProduct(id);
+
+  if (!foundProduct.length) {
+    const dbError = { status: 404, message: 'Product not found' };
+    throw dbError;
+  }
 };
 
 module.exports = {
