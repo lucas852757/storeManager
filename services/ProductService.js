@@ -56,7 +56,7 @@ const updateProduct = async (id, name) => {
 };
 
 const deleteProduct = async (id) => {
-
+  const foundProduct = await productModel.findProduct(id);
 };
 
 module.exports = {
