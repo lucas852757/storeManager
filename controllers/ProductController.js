@@ -32,7 +32,7 @@ const updateProduct = async (req, res, next) => {
     const { id } = req.params;
     const { name } = req.body;
     const product = await productService.updateProduct(id, name);
-    return res.status(201).json(product);
+    return res.status(200).json(product);
   } catch (error) {
     console.log(error);
     next(error);
