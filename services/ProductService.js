@@ -34,11 +34,23 @@ const createProduct = async (name) => {
 };
 
 const updateProduct = async (id, name) => {
-  Joi.object({
+  const schema = Joi.object({
     id: Joi.number().integer().positive().required(),
-    name: Joi.string().not().empty().min(5)
+    name: Joi.string().min().not().empty()
       .required(),
   });
+
+  const { error } = schema.validate({ id, name });
+
+  if (error) {
+    throw error;
+  }
+  const foundProduct = await productModel.findProduct(id);
+
+  if (!foundProduct.length) {
+    const dbError = { status: 404, message: 'Product not found' };
+    throw dbError;
+  }
   const product = await productModel.updateProduct(id, name);
   return product;
 };
