@@ -26,7 +26,7 @@ const addProduct = async (name) => {
 };
 
 const updateProduct = async (id, name) => {
-  const query = 'update product set name=?, where id=?';
+  const query = 'update products set name=? where id=?';
   await connection.query(query, [name, id]);
   return ({ id, name });
 };
