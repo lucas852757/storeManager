@@ -1,3 +1,4 @@
+const Joi = require('joi');
 const { errorsOfJoi } = require('../helpers/helpersJoi');
 const saleModel = require('../models/SaleModel');
 const productModel = require('../models/ProductModel');
@@ -62,7 +63,17 @@ const deleteSale = async (id) => {
 };
 
 const updateSale = async (id, body) => {
-
+  body.forAch(({ productId, quantity }) => {
+    const { error } = Joi.object({
+    productId: Joi.number().required(),
+    quantity: Joi.number().min(1).not().empty()
+.required(),
+ }).validate({ productId, quantity }); 
+    
+    if (error) {
+      throw error;
+    }
+});
 };
 
 module.exports = {
