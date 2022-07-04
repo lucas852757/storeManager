@@ -1,4 +1,3 @@
-const Joi = require('joi');
 const { errorsOfJoi } = require('../helpers/helpersJoi');
 const saleModel = require('../models/SaleModel');
 const productModel = require('../models/ProductModel');
@@ -67,11 +66,18 @@ const updateSale = async (id, body) => {
   const foundProductId = await saleModel.findSalesProductId(id);
   console.log(foundProductId);
   
-  // Identifica a lançao o erro
+  // Identifica a lançao o erro para o Joi
   errorsOfJoi(body);
   
+  // Não encontra product_id
   if (!foundProductId.length) {
     const dbError = { status: 404, message: 'Product not found' };
+    throw dbError;
+  }
+
+  // Não encontra venda
+  if (!foundReginsterSale.length) {
+    const dbError = { status: 404, message: 'Sale not found' };
     throw dbError;
   }
 
