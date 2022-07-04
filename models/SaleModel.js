@@ -49,12 +49,14 @@ const deleteSale = async (id) => {
 };
 
 const updateSalesProduct = async (id, { productId, quantity }) => {
-  const query = 'update sales_product set product_id=?, quantity=? where sale_id=?';
-  const [result] = await connection.query(query, [productId, quantity, id]);
+  console.log(id, productId, quantity);
+  const query = 'update sales_products set sale_id=?, product_id=?, quantity=? where product_id=?';
+  const [result] = await connection.query(query, [id, productId, quantity, productId]);
+  console.log(result);
 };
 
 const findSalesProductId = async (id) => {
-  const query = 'select product_id from sales_products where id=?';
+  const query = 'select product_id from sales_products where sale_id=?';
   const [result] = await connection.query(query, [id]);
   return result;
 };

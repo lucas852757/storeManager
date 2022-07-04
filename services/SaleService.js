@@ -64,7 +64,7 @@ const deleteSale = async (id) => {
 
 const updateSale = async (id, body) => {
   const foundProductId = saleModel.findSalesProductId(id);
-  body.forAch(({ productId, quantity }) => {
+  body.forEach(({ productId, quantity }) => {
     const { error } = Joi.object({
       productId: Joi.number().required(),
       quantity: Joi.number().min(1).not().empty()
