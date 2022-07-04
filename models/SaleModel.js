@@ -48,6 +48,11 @@ const deleteSale = async (id) => {
   await connection.query(query, [id]);
 };
 
+const updateSalesProduct = async (id, { productId, quantity }) => {
+  const query = 'update sales_product set product_id=?, quantity=? where sale_id=?';
+  const [result] = await connection.query(query, [productId, quantity, id]);
+};
+
 module.exports = {
   findAllSales,
   addSales,
@@ -57,4 +62,5 @@ module.exports = {
   getSale,
   registerOfSale,
   deleteSale,
+  updateSalesProduct,
 };
