@@ -63,6 +63,7 @@ const deleteSale = async (id) => {
 };
 
 const updateSale = async (id, body) => {
+  const foundRegisterSale = saleModel.registerOfSale(id);
   body.forAch(({ productId, quantity }) => {
     const { error } = Joi.object({
     productId: Joi.number().required(),
@@ -73,7 +74,12 @@ const updateSale = async (id, body) => {
     if (error) {
       throw error;
     }
-});
+  });
+  
+  if (!foundRegisterSale) {
+    const dbError = { status: 404, message: 'Product not found' };
+    throw dbError;
+  }
 };
 
 module.exports = {
