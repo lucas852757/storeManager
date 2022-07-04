@@ -66,10 +66,10 @@ const updateSale = async (id, body) => {
   const foundRegisterSale = saleModel.registerOfSale(id);
   body.forAch(({ productId, quantity }) => {
     const { error } = Joi.object({
-    productId: Joi.number().required(),
-    quantity: Joi.number().min(1).not().empty()
-.required(),
- }).validate({ productId, quantity }); 
+      productId: Joi.number().required(),
+      quantity: Joi.number().min(1).not().empty()
+        .required(),
+    }).validate({ productId, quantity });
     
     if (error) {
       throw error;
@@ -80,6 +80,8 @@ const updateSale = async (id, body) => {
     const dbError = { status: 404, message: 'Product not found' };
     throw dbError;
   }
+
+  body.map(async (sale) => { await saleModel.updateSalesProduct(id, sale); });
 };
 
 module.exports = {
