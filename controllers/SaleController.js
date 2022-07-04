@@ -33,8 +33,20 @@ const getSale = async (req, res, next) => {
 }
 };
 
+const deleteSale = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await saleService.deleteSale(id);
+    return res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 module.exports = {
   postSales,
   getSales,
   getSale,
+  deleteSale,
 };
