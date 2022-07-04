@@ -37,6 +37,11 @@ const getSale = async (id) => {
   return serialize(result);
 };
 
+const deleteSale = async (id) => { 
+  const query = 'delete from sales where id=?';
+  await connection.query(query, [id]);
+};
+
 module.exports = {
   findAllSales,
   addSales,
@@ -44,4 +49,5 @@ module.exports = {
   productsSold,
   getSales,
   getSale,
+  deleteSale,
 };
