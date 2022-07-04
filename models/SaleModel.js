@@ -53,6 +53,12 @@ const updateSalesProduct = async (id, { productId, quantity }) => {
   const [result] = await connection.query(query, [productId, quantity, id]);
 };
 
+const findSalesProductId = async (id) => {
+  const query = 'select product_id from sales_products where id=?';
+  const [result] = await connection.query(query, [id]);
+  return result;
+};
+
 module.exports = {
   findAllSales,
   addSales,
@@ -63,4 +69,5 @@ module.exports = {
   registerOfSale,
   deleteSale,
   updateSalesProduct,
+  findSalesProductId,
 };
