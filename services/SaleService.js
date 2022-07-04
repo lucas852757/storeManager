@@ -51,7 +51,7 @@ const getSale = async (id) => {
 };
 
 const deleteSale = async (id) => {
-  const foundRegister = saleModel.registerOfSale(id);
+  const foundRegister = await saleModel.registerOfSale(id);
 
   if (!foundRegister.length) {
     const error = { status: 404, message: 'Sale not found' };
