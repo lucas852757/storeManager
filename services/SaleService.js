@@ -82,6 +82,8 @@ const updateSale = async (id, body) => {
   }
 
   await Promise.all(body.map(async (sale) => { await saleModel.updateSalesProduct(id, sale); }));
+
+  return { saleId: id, itemsUpdated: body };
 };
 
 module.exports = {
