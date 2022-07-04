@@ -65,19 +65,11 @@ const deleteSale = async (id) => {
 const updateSale = async (id, body) => {
   const foundProductId = await saleModel.findSalesProductId(id);
   console.log(foundProductId);
-  body.forEach(({ productId, quantity }) => {
-    const { error } = Joi.object({
-      productId: Joi.number().required(),
-      quantity: Joi.number().min(1).not().empty()
-        .required(),
-    }).validate({ productId, quantity });
-    
-    if (error) {
-      throw error;
-    }
-  });
   
-  if (!foundProductId) {
+  // Identifica a lançao o erro
+  errorsOfJoi(body);
+  
+  if (!foundProductId.length) {
     const dbError = { status: 404, message: 'Product not found' };
     throw dbError;
   }
