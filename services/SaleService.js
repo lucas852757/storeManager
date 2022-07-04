@@ -81,7 +81,7 @@ const updateSale = async (id, body) => {
     throw dbError;
   }
 
-  body.map(async (sale) => { await saleModel.updateSalesProduct(id, sale); });
+  await Promise.all(body.map(async (sale) => { await saleModel.updateSalesProduct(id, sale); }));
 };
 
 module.exports = {
