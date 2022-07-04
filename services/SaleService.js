@@ -63,6 +63,7 @@ const deleteSale = async (id) => {
 };
 
 const updateSale = async (id, body) => {
+  const foundReginsterSale = await saleModel.registerOfSale(id);
   const foundProductId = await saleModel.findSalesProductId(id);
   console.log(foundProductId);
   
