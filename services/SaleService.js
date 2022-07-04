@@ -63,7 +63,7 @@ const deleteSale = async (id) => {
 };
 
 const updateSale = async (id, body) => {
-  const foundProductId = saleModel.findProductId(id);
+  const foundProductId = saleModel.findSalesProductId(id);
   body.forAch(({ productId, quantity }) => {
     const { error } = Joi.object({
       productId: Joi.number().required(),
