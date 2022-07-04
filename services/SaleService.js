@@ -50,8 +50,13 @@ const getSale = async (id) => {
   return sale;
 };
 
+const deleteSale = async (id) => {
+  const foundRegister = saleModel.registerOfSale(id);
+};
+
 module.exports = {
   createSales,
   getSales,
   getSale,
+  deleteSale,
 };
