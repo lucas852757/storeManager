@@ -58,6 +58,7 @@ const deleteSale = async (id) => {
     throw error;
   }
   
+  await saleModel.deleteSale(id);
 };
 
 module.exports = {
