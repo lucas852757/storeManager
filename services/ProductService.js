@@ -62,6 +62,8 @@ const deleteProduct = async (id) => {
     const dbError = { status: 404, message: 'Product not found' };
     throw dbError;
   }
+
+  await productModel.deleteProduct(id);
 };
 
 module.exports = {
