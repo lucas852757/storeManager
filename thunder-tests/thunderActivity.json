@@ -18,16 +18,16 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/products/1",
-    "url": "http://localhost:3000/sales/999",
+    "url": "http://localhost:3000/sales/1",
     "method": "PUT",
     "sortNum": 0,
     "created": "2022-06-29T21:08:38.358Z",
-    "modified": "2022-07-04T21:16:38.704Z",
+    "modified": "2022-07-04T23:33:54.865Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n    {\n      \"productId\": 2,\n      \"quantity\": 4\n    }\n]",
+      "raw": " [\n  {\"productId\":1,\n  \"quantity\":1},\n  {\"productId\":99999,\n  \"quantity\":5}\n]",
       "form": []
     },
     "tests": []

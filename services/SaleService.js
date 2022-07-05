@@ -62,18 +62,10 @@ const deleteSale = async (id) => {
 };
 
 const updateSale = async (id, body) => {
-  const foundReginsterSale = await saleModel.registerOfSale(id);
-  const foundProductId = await saleModel.findSalesProductId(id);
-  console.log(foundProductId);
-  
   // Identifica a lançao o erro para o Joi
   errorsOfJoi(body);
-  
-  // Não encontra product_id
-  if (!foundProductId.length) {
-    const dbError = { status: 404, message: 'Product not found' };
-    throw dbError;
-  }
+
+  const foundReginsterSale = await saleModel.registerOfSale(id);
 
   // Não encontra venda
   if (!foundReginsterSale.length) {
@@ -81,7 +73,19 @@ const updateSale = async (id, body) => {
     throw dbError;
   }
 
-  await Promise.all(body.map(async (sale) => { await saleModel.updateSalesProduct(id, sale); }));
+  // const foundProductId = await saleModel.findSalesProductId(id);
+  // console.log('-->', foundProductId);
+  await Promise.all(body.map(async ({ productId }) => {
+    const foundProductId = await saleModel.findSalesProductId(productId);
+    if (!foundProductId.length) {
+      const error = { status: 404, message: 'Product not found' };
+      throw error;
+    }
+  }));
+
+  await Promise.all(body.map(async (sale) => {
+      await saleModel.updateSalesProduct(id, sale);
+    }));
 
   return { saleId: id, itemsUpdated: body };
 };
