@@ -50,10 +50,22 @@ const deleteProduct = async (req, res, next) => {
   }
 };
 
+const selectProductsByName = async (req, res, next) => {
+  try {
+    const { q } = req.query;
+    const products = await productService.selectProductsByName(q);
+    return res.status(200).json(products);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+ };
+
 module.exports = {
   getOneProduct,
   getAllProducts,
   postProducts,
   updateProduct,
   deleteProduct,
+  selectProductsByName,
 };
