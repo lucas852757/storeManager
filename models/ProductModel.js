@@ -41,6 +41,12 @@ const selectProductsByName = async (q) => {
   const foundProducts = await connection.query(query, [q]);
   return foundProducts;
 };
+
+const selectAllProducts = async () => {
+  const query = 'select id, name from products';
+  const foundProducts = await connection.query(query);
+  return foundProducts;
+ };
 module.exports = {
   getAllProducts,
   getProductsById,
@@ -49,4 +55,5 @@ module.exports = {
   updateProduct,
   deleteProduct,
   selectProductsByName,
+  selectAllProducts,
 };
