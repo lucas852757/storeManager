@@ -37,7 +37,7 @@ const deleteProduct = async (id) => {
 };
  
 const selectProductsByName = async (q) => {
-  const query = 'select name from products where name like %?%';
+  const query = 'select id, name from products where name like %?%';
   const foundProducts = await connection.query(query, [q]);
   return foundProducts;
 };
