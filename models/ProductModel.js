@@ -36,15 +36,19 @@ const deleteProduct = async (id) => {
   await connection.query(query, [id]);
 };
  
+/** 
+ * source: https://stackoverflow.com/questions/56394978/how-to-use-like-query-in-mysql-using-nodejs
+ * A query seleciona os campos id e name, cujo o campo name possui uma string que contém uma substring igual ao valor da varoável q.
+*/
 const selectProductsByName = async (q) => {
-  const query = 'select id, name from products where name like %?%';
-  const foundProducts = await connection.query(query, [q]);
+  const query = 'select id, name from products where name like ?';
+  const [foundProducts] = await connection.query(query, [`%${q}%`]);
   return foundProducts;
 };
 
 const selectAllProducts = async () => {
   const query = 'select id, name from products';
-  const foundProducts = await connection.query(query);
+  const [foundProducts] = await connection.query(query);
   return foundProducts;
  };
 module.exports = {
