@@ -8,8 +8,8 @@ const ProductController = require("../../../controllers/ProductController");
 const ProductService = require("../../../services/ProductService");
 
 describe("controllers/productsControllers", () => {
+  beforeEach(sinon.restore);
   describe("getOneProduct", () => {
-    beforeEach(sinon.restore);
 
     const req = {};
     const res = {};
