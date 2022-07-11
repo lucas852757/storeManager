@@ -9,9 +9,7 @@ const ProductModel = require('../../../models/ProductModel');
 describe('models/ProductModel', () => {
 
   describe('getProductsById', () => {
-    afterEach(async () => {
-      connection.query.restore();
-    });
+    afterEach(connection.query.restore());
     /* it('dispara um erro se a "connection.query", dispara um erro', async () => {
       sinon.stub(connection, "query").rejects();
 
@@ -23,7 +21,7 @@ describe('models/ProductModel', () => {
       sinon.stub(connection, "query").resolves([[]]);
       const response = await ProductModel.getProductsById(0);
 
-      expect(response).to.be.empty
+      expect(response).to.be.empty;
     })
 
    
