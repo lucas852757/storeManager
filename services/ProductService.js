@@ -30,7 +30,11 @@ const createProduct = async (name) => {
     await productModel.addProduct(name);
   } */
   const product = await productModel.addProduct(name);
-  return product;
+
+  return {
+    id: product[0].insertId,
+    name,
+  };
 };
 
 const updateProduct = async (id, name) => {
