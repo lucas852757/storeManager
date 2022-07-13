@@ -5,52 +5,80 @@ source: https://app.betrybe.com/course/live-lectures/sd-cohort-17#aula-234-arqui
 source: https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#momento-bonus-do-zero-ao-setup-do-msc-testes-ii
 */
 
+//Forarm resolvidas seguindo o exemplo do Professor Leandro
+
 const sinon = require("sinon");
-const { expect } = require("chai");
+const chai = require("chai");
+const chaiAsPromised = require('chai-as-promised');
 
 const connection = require("../../../models/connection");
 
 const ProductModel = require("../../../models/ProductModel");
 
+chai.use(chaiAsPromised);
+
 describe("models/ProductModel", () => {
   beforeEach(sinon.restore);
 
   describe("getProductsById", () => {
-    /* it('dispara um erro se a "connection.query", dispara um erro', async () => {
-      sinon.stub(connection, "query").rejects();
+     it('dispara um erro se a "connection.query", dispara um erro', () => {
+       sinon.stub(connection, "query").rejects();
 
-      const response = await  ProductModel.getProductsById(1);
-      console.log(response);
-      expect(response).to.be.frozen;
-    } ) */
-    it("retorna uma lista vazia", async () => {
+      const response = ProductModel.getProductsById(1);
+      // console.log(response);
+       chai.expect(response).to.be.eventually.be.rejected;
+    } )
+    it("retorna uma lista vazia", () => {
       sinon.stub(connection, "query").resolves([[]]);
-      const response = await ProductModel.getProductsById(0);
+      const response = ProductModel.getProductsById(0);
 
-      expect(response).to.be.empty;
+      chai.expect(response).to.be.empty;
     });
-  });
-  describe("quando o produto é encontrado", () => {
-    it("retorna uma lista com um objeto", async () => {
+
+    it("retorna uma lista com um objeto", () => {
       sinon.stub(connection, "query").resolves([[{}]]);
-      const response = await ProductModel.getProductsById(0);
-      expect(response).to.deep.include({});
+      const response = ProductModel.getProductsById(0);
+      chai.expect(response).to.deep.include({});
     });
   });
 
   describe("getAllProducts", () => {
-    it("retorna uma lista de produtos", async () => {
-      sinon.stub(connection, "query").resolves([[]]);
-      const response = await ProductModel.getAllProducts();
+    it('dispara um erro se a "connection.query", dispara um erro', () => {
+      sinon.stub(connection, "query").rejects();
 
-      expect(response).to.be.deep.equal([]);
+      const response = ProductModel.getAllProducts();
+      // console.log(response);
+      chai.expect(response).to.be.eventually.be.rejected;
+    });
+
+     it("retorna uma lista vazia", () => {
+       sinon.stub(connection, "query").resolves([[]]);
+       const response = ProductModel.getAllProducts();
+
+       chai.expect(response).to.eventually.be.undefined
+     });
+
+    it("retorna uma lista de produtos", () => {
+      sinon.stub(connection, "query").resolves([[]]);
+      const response = ProductModel.getAllProducts();
+
+      chai.expect(response).to.eventually.be.deep.equal([]);
     });
   });
   describe('addProduct', () => {
-    it.only('quando adicionado um produto, retorna um "id"', async () => {
+
+     it('dispara um erro se a "connection.query", dispara um erro', () => {
+       sinon.stub(connection, "query").rejects();
+
+       const response = ProductModel.addProduct({});
+       // console.log(response);
+       chai.expect(response).to.be.eventually.be.rejected;
+     });
+    
+    it('quando adicionado um produto, retorna um "id"', () => {
       sinon.stub(connection, "execute").resolves([{ insertId: 1}]);
-      const response = await ProductModel.addProduct();
-      expect(response).to.be.a('number');
+      const response = ProductModel.addProduct();
+      chai.expect(response).to.eventually.be.equal('number');
     });
   });
 });
