@@ -1,5 +1,10 @@
+/**
+ * https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#aula-234-arquitetura-de-software-testando-as-camadas
+ */
+
 const Joi = require('joi');
 const productModel = require('../models/ProductModel');
+const { runSchema } = require('../utils/runSchema');
 
 const listAllProducts = async () => {
   const products = await productModel.getAllProducts();
@@ -20,7 +25,10 @@ const createProduct = async (name) => {
     name: Joi.string().not().empty().min(5)
       .required(),
   });
+
+  // Aula do professor Leandro
   const { error } = schema.validate({ name });
+  
   if (error) {
     throw error;
   }
@@ -29,10 +37,10 @@ const createProduct = async (name) => {
   if (!foundProduct.length) {
     await productModel.addProduct(name);
   } */
-  const product = await productModel.addProduct(name);
+  const id = await productModel.addProduct(name);
 
   return {
-    id: product[0].insertId,
+    id,
     name,
   };
 };
@@ -44,7 +52,8 @@ const updateProduct = async (id, name) => {
       .required(),
   });
 
-  const { error } = schema.validate({ id, name });
+  const { error } = runSchema(schema)({ id, name });
+  // const { error } = schema.validate({ id, name });
 
   if (error) {
     throw error;
