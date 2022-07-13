@@ -28,7 +28,6 @@ const createProduct = async (name) => {
 
   // Aula do professor Leandro
   const { error } = schema.validate({ name });
-  
   if (error) {
     throw error;
   }

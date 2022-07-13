@@ -26,12 +26,14 @@ app.delete('/products/:id', productController.deleteProduct);
 app.put('/products/:id', productController.updateProduct);
 app.put('/sales/:id', saleController.updateSale);
 
+// Testado
 app.get('/products/:id', productController.getOneProduct);
 app.get('/products', productController.getAllProducts);
 
 app.post('/products', productController.postProducts);
 app.post('/sales', saleController.postSales);
 
+// Testado
 app.get('/sales/:id', saleController.getSale);
 app.get('/sales', saleController.getSales);
 app.use(error);

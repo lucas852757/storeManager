@@ -6,8 +6,10 @@ https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#momento-bonus-do-zer
 
 const { expect } = require("chai");
 const sinon = require("sinon");
+const Joi = require('joi');
 const ProductService = require("../../../services/ProductService");
 const ProductModel = require("../../../models/ProductModel");
+const { runSchema } = require("../../../utils/runSchema");
 
 describe("services/productServices", () => {
   
@@ -32,4 +34,22 @@ describe("services/productServices", () => {
     });
   });
   
+  // Terminar
+  // describe('createProduct', () => {
+  //   it('valida se Joi dispara um erro',  () => {
+  //     const schema = {
+  //       validate: sinon.stub().rejects(),
+  //     }
+  //     //console.log(runSchema(schema)[0]);
+  //     expect(runSchema(schema)[0]).to.be.equal(undefined);
+  //   });
+
+  //   it.('quando não existe erros de validação', () => {
+  //     const schema = {
+  //       validate: sinon.stub().resolves({a:''}),
+  //     };
+  //    // console.log(runSchema(schema)[0]);
+  //    // expect(runSchema(schema)[0]).to.be.equal({});
+  //   });
+  // });
 });

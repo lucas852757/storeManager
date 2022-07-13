@@ -19,10 +19,7 @@ return foundProduct;
 const addProduct = async (name) => {
   const query = 'insert into products (name) values (?)';
   const result = await connection.execute(query, [name]);
-  return {
-    id: result[0].insertId,
-    name,
-  };
+  return result[0].insertId;
 };
 
 const updateProduct = async (id, name) => {
