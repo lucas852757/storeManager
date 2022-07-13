@@ -46,4 +46,11 @@ describe("models/ProductModel", () => {
       expect(response).to.be.deep.equal([]);
     });
   });
+  describe('addProduct', () => {
+    it.only('quando adicionado um produto, retorna um "id"', async () => {
+      sinon.stub(connection, "execute").resolves([{ insertId: 1}]);
+      const response = await ProductModel.addProduct();
+      expect(response).to.be.a('number');
+    });
+  });
 });
