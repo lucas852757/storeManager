@@ -1,59 +1,34 @@
 const saleService = require('../services/SaleService');
 
-const postSales = async (req, res, next) => {
-  try {
+const postSales = async (req, res, _next) => {
     const { body } = req;
     const sales = await saleService.createSales(body);
     // console.log(sales);
     return res.status(201).json(sales);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
-const getSales = async (req, res, next) => {
-  try {
+const getSales = async (req, res, _next) => {
     const sales = await saleService.getSales();
     return res.status(200).json(sales);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
-const getSale = async (req, res, next) => {
-  try {
+const getSale = async (req, res, _next) => {
     const { id } = await req.params;
     const sale = await saleService.getSale(id);
     return res.status(200).json(sale);
-} catch (error) {
-  console.log(error);
-  next(error);
-}
 };
 
-const deleteSale = async (req, res, next) => {
-  try {
+const deleteSale = async (req, res, _next) => {
     const { id } = req.params;
     await saleService.deleteSale(id);
     return res.status(204).end();
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
-const updateSale = async (req, res, next) => {
-  try {
+const updateSale = async (req, res, _next) => {
     const { id } = req.params;
     const { body } = req;
     const sale = await saleService.updateSale(id, body);
     return res.status(200).json(sale);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
 module.exports = {

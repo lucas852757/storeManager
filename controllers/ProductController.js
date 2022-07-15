@@ -1,14 +1,9 @@
 const productService = require('../services/ProductService');
 
-const getOneProduct = async (req, res, next) => {
-  try {
+const getOneProduct = async (req, res, _next) => {
     const { id } = req.params;
     const product = await productService.listProductById(id);
     return res.status(200).json(product);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
 const getAllProducts = async (req, res) => {
@@ -16,49 +11,29 @@ const getAllProducts = async (req, res) => {
     return res.status(200).json(products);
 };
 
-const postProducts = async (req, res, next) => {
-  try {
+const postProducts = async (req, res, _next) => {
     const { name } = req.body;
     const products = await productService.createProduct(name);
     return res.status(201).json(products);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
-const updateProduct = async (req, res, next) => {
-  try {
+const updateProduct = async (req, res, _next) => {
     const { id } = req.params;
     const { name } = req.body;
     const product = await productService.updateProduct(id, name);
     return res.status(200).json(product);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
-const deleteProduct = async (req, res, next) => {
-  try {
+const deleteProduct = async (req, res, _next) => {
     const { id } = req.params;
     await productService.deleteProduct(id);
     return res.status(204).end();
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
 };
 
-const selectProductsByName = async (req, res, next) => {
-  try {
+const selectProductsByName = async (req, res, _next) => {
     const { q } = req.query;
     const products = await productService.selectProductsByName(q);
     return res.status(200).json(products);
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
  };
 
 module.exports = {

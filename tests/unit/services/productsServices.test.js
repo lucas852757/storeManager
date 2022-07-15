@@ -4,12 +4,16 @@ https://app.betrybe.com/course/live-lectures/sd-cohort-17#aula-234-arquitetura-d
 
 https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#momento-bonus-do-zero-ao-setup-do-msc-testes-ii*/
 
-const { expect } = require("chai");
 const sinon = require("sinon");
+const chai = require("chai");
+const chaiAsPromised = require("chai-as-promised");
+
 const Joi = require('joi');
 const ProductService = require("../../../services/ProductService");
 const ProductModel = require("../../../models/ProductModel");
 const { runSchema } = require("../../../utils/runSchema");
+
+chai.use(chaiAsPromised);
 
 describe("services/productServices", () => {
   
@@ -17,15 +21,28 @@ describe("services/productServices", () => {
 
   describe("getProductsById", () => {
 
-    it("deve retornar um objeto", async () => {
-      sinon.stub(ProductModel, "getProductsById").resolves([{}]);
-      const response = await ProductService.listProductById(1);
+    it('quando "getProductId" responde com um erro', () => {
+      sinon.stub(ProductModel, 'getProductsById').rejects();
 
-      expect(response).to.be.an("object");
+      const response = ProductModel.getProductsById(1);
+      chai.expect(response).to.eventually.be.rejected;
+    });
+
+    it("deve retornar um objeto", () => {
+      sinon.stub(ProductModel, "getProductsById").resolves([{}]);
+      const response = ProductService.listProductById(1);
+
+      chai.expect(response).to.eventually.be.equal("object");
     });
   });
 
   describe('listAllProducts', () => {
+    it('quando "listAllProducts" responde com um erro', () => {
+      sinon.stub(ProductModel, "getProductsById").rejects();
+
+      const response = ProductModel.listAllProducts();
+      chai.expect(response).to.eventually.be.rejected;
+    });
     it("retorna uma lista de produtos", async () => {
       sinon.stub(ProductModel, "getAllProducts").resolves([]);
       const response = await ProductService.listAllProducts();

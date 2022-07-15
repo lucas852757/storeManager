@@ -48,7 +48,7 @@ describe("models/ProductModel", () => {
 
       const response = ProductModel.getAllProducts();
       // console.log(response);
-      chai.expect(response).to.be.eventually.be.rejected;
+      chai.expect(response).to.eventually.be.rejected;
     });
 
      it("retorna uma lista vazia", () => {
