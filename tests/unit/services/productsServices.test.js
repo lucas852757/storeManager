@@ -40,26 +40,26 @@ describe("services/productServices", () => {
     it('quando "listAllProducts" responde com um erro', () => {
       sinon.stub(ProductModel, "getProductsById").rejects();
 
-      const response = ProductModel.listAllProducts();
+      const response = ProductService.listAllProducts();
       chai.expect(response).to.eventually.be.rejected;
     });
-    it("retorna uma lista de produtos", async () => {
+    it("retorna uma lista de produtos", () => {
       sinon.stub(ProductModel, "getAllProducts").resolves([]);
-      const response = await ProductService.listAllProducts();
+      const response = ProductService.listAllProducts();
 
-      expect(response).to.be.deep.equal([]);
+      chai.expect(response).to.eventually.be.deep.equal([]);
     });
   });
   
   // Terminar
-  // describe('createProduct', () => {
-  //   it('valida se Joi dispara um erro',  () => {
-  //     const schema = {
-  //       validate: sinon.stub().rejects(),
-  //     }
-  //     //console.log(runSchema(schema)[0]);
-  //     expect(runSchema(schema)[0]).to.be.equal(undefined);
-  //   });
+   describe('createProduct', () => {
+  it('valida se Joi dispara um erro',  () => {
+  const schema = {
+    validate: sinon.stub().rejects(),
+  };
+    // console.log(runSchema(schema)[0]);
+    chai.expect(runSchema(schema)[0]).to.be.equal(undefined);
+  });
 
   //   it.('quando não existe erros de validação', () => {
   //     const schema = {
@@ -68,5 +68,5 @@ describe("services/productServices", () => {
   //    // console.log(runSchema(schema)[0]);
   //    // expect(runSchema(schema)[0]).to.be.equal({});
   //   });
-  // });
+  });
 });
