@@ -2,6 +2,7 @@
  * https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#aula-234-arquitetura-de-software-testando-as-camadas
  */
 
+// lecture/23.4
 const Joi = require('joi');
 const productModel = require('../models/ProductModel');
 const { runSchema } = require('../utils/runSchema');
@@ -27,7 +28,8 @@ const createProduct = async (name) => {
   });
 
   // Aula do professor Leandro
-  const { error } = schema.validate({ name });
+  const { error } = runSchema(schema)({ name });
+
   if (error) {
     throw error;
   }

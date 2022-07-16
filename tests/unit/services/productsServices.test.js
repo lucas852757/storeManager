@@ -2,8 +2,11 @@
 
 https://app.betrybe.com/course/live-lectures/sd-cohort-17#aula-234-arquitetura-de-software-testando-camadas
 
-https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#momento-bonus-do-zero-ao-setup-do-msc-testes-ii*/
+https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#momento-bonus-do-zero-ao-setup-do-msc-testes-ii
 
+https://app.betrybe.com/course/live-lectures/sd-cohort-19-b#aula-234-arquitetura-de-software-testando-as-camadas*/
+
+// lecture/23.4
 const sinon = require("sinon");
 const chai = require("chai");
 const chaiAsPromised = require("chai-as-promised");
@@ -12,6 +15,7 @@ const Joi = require('joi');
 const ProductService = require("../../../services/ProductService");
 const ProductModel = require("../../../models/ProductModel");
 const { runSchema } = require("../../../utils/runSchema");
+
 
 chai.use(chaiAsPromised);
 
@@ -58,15 +62,15 @@ describe("services/productServices", () => {
     validate: sinon.stub().rejects(),
   };
     // console.log(runSchema(schema)[0]);
-    chai.expect(runSchema(schema)[0]).to.be.equal(undefined);
+    chai.expect(runSchema(schema)()).to.eventually.be.rejected;
   });
 
-  //   it.('quando não existe erros de validação', () => {
-  //     const schema = {
-  //       validate: sinon.stub().resolves({a:''}),
-  //     };
-  //    // console.log(runSchema(schema)[0]);
-  //    // expect(runSchema(schema)[0]).to.be.equal({});
-  //   });
+  it('quando não existe erros de validação', () => {
+  const schema = {
+  validate: sinon.stub().resolves(''),
+  };
+  // console.log(runSchema(schema)[0]);
+  chai.expect(runSchema(schema)()).to.eventually.be.equal('')
+  });
   });
 });
